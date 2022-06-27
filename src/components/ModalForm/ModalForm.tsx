@@ -2,7 +2,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import React, { FC, ReactHTMLElement, useState } from 'react'
 import { useAppDispatch } from '../../hooks/hook'
 import { setPosts } from '../../store/slices/postsSlice'
-import styles from './Modal.module.scss'
+import styles from './ModalForm.module.scss'
 
 type ModalTypeProps = {
   visible: boolean

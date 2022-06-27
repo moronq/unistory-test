@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ModalDelete from '../../components/ModalDelete/ModalDelete'
 import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 import { changePost, deletePost } from '../../store/slices/postsSlice'
 import { PostType } from '../../types/postType'
@@ -16,6 +17,7 @@ const Post: FC = () => {
 
   const [title, setTitle] = useState(post?.title)
   const [content, setContent] = useState(post?.content)
+  const [modalVisible, setModalVisible] = useState(false)
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
@@ -40,25 +42,31 @@ const Post: FC = () => {
   }
 
   const onDelete = () => {
-    dispatch(deletePost(id as string))
-    goBack()
+    setModalVisible(true)
   }
 
   return (
-    <section>
-      <button onClick={goBack}>Назад</button>
-      <h3>{`Запись "${post?.title}"`}</h3>
-      <form>
-        <label htmlFor="">
-          <input type="text" value={title} onChange={onChangeTitle} />
-        </label>
-        <label htmlFor="">
-          <input type="text" value={content} onChange={onChangeContent} />
-        </label>
-      </form>
-      <button onClick={onDelete}>Удалить</button>
-      <button onClick={onSave}>Сохранить</button>
-    </section>
+    <>
+      <section>
+        <button onClick={goBack}>Назад</button>
+        <h3>{`Запись "${post?.title}"`}</h3>
+        <form>
+          <label htmlFor="">
+            <input type="text" value={title} onChange={onChangeTitle} />
+          </label>
+          <label htmlFor="">
+            <input type="text" value={content} onChange={onChangeContent} />
+          </label>
+        </form>
+        <button onClick={onDelete}>Удалить</button>
+        <button onClick={onSave}>Сохранить</button>
+      </section>
+      <ModalDelete
+        id={id as string}
+        visible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+    </>
   )
 }
 
