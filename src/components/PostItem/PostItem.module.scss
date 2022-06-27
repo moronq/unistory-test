@@ -1,0 +1,46 @@
+.postTitle {
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.postContainer {
+  display: flex;
+  flex-direction: column;
+}
+.postContent {
+  border: 1px solid black;
+  padding: 10px;
+  height: 100px;
+  margin-bottom: 10px;
+  width: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.postText {
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.postButton {
+  background-color: #dbe9f8;
+  border: 1px solid #868ea1;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #f4f9ff;
+  }
+}
+.postLink {
+  width: 100%;
+  display: block;
+  padding: 5px 0;
+  color: black;
+}

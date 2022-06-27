@@ -1,0 +1,42 @@
+.postsPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  gap: 30px;
+}
+
+.pageTitle {
+  font-weight: 700;
+  font-size: 20px;
+}
+.postList {
+  display: grid;
+  grid-template-columns: 220px 220px 220px;
+  grid-template-rows: 160px;
+  grid-auto-rows: 160px;
+  grid-auto-flow: row;
+  gap: 40px;
+  @media (max-width: 830px) {
+    grid-template-columns: 220px 220px;
+  }
+  @media (max-width: 560px) {
+    grid-template-columns: 220px;
+  }
+}
+
+.postListContainer {
+  flex: 1 0 auto;
+}
+.addButton {
+  background-color: #dbe9f8;
+  padding: 10px 20px;
+  border: 1px solid #868ea1;
+  align-self: flex-end;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #f4f9ff;
+  }
+}
