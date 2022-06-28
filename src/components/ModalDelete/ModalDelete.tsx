@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Modal from '../../hoc/Modal'
 import { useAppDispatch } from '../../hooks/hook'
 import { deletePost } from '../../store/slices/postsSlice'
 import styles from './ModalDelete.module.scss'
@@ -27,12 +28,8 @@ const ModalDelete: FC<ModalDeleteTypeProps> = ({
     setModalVisible(false)
   }
 
-  const style = {
-    display: visible ? 'block' : 'none',
-  }
-
   return (
-    <section style={style} className={styles.modalContainer}>
+    <Modal visible={visible}>
       <div className={styles.modalFormContainer}>
         <p className={styles.modalMessage}>
           {' '}
@@ -47,7 +44,7 @@ const ModalDelete: FC<ModalDeleteTypeProps> = ({
           </button>
         </div>
       </div>
-    </section>
+    </Modal>
   )
 }
 

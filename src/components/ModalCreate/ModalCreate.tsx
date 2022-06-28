@@ -3,17 +3,14 @@ import React, { FC, ReactHTMLElement, useState } from 'react'
 import { useAppDispatch } from '../../hooks/hook'
 import { setPosts } from '../../store/slices/postsSlice'
 import styles from './ModalCreate.module.scss'
+import Modal from '../../hoc/Modal'
 
 type ModalTypeProps = {
   visible: boolean
   setVisible: (visible: boolean) => void
 }
 
-const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
-  const style = {
-    display: visible ? 'block' : 'none',
-  }
-
+const ModalCreate: FC<ModalTypeProps> = ({ visible, setVisible }) => {
   const dispatch = useAppDispatch()
 
   const [title, setTitle] = useState('')
@@ -46,7 +43,7 @@ const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
   }
 
   return (
-    <section style={style} className={styles.modalContainer}>
+    <Modal visible={visible}>
       <div className={styles.modalFormContainer}>
         <form className={styles.modalForm} action="">
           <label className={styles.titleLabel}>
@@ -82,8 +79,8 @@ const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
           </button>
         </div>
       </div>
-    </section>
+    </Modal>
   )
 }
 
-export default Modal
+export default ModalCreate
