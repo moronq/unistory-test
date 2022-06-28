@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ModalDelete from '../../components/ModalDelete/ModalDelete'
+import NotFoundPage from '../../components/NotFoundPage'
 import { useAppDispatch, useAppSelector } from '../../hooks/hook'
 import { changePost, deletePost } from '../../store/slices/postsSlice'
 import { PostType } from '../../types/postType'
@@ -8,27 +9,31 @@ import styles from './Post.module.scss'
 
 const Post: FC = () => {
   const { id } = useParams()
+
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const { posts } = useAppSelector((state) => state.posts)
 
   const post = useAppSelector((state) =>
     state.posts.posts.find((el) => el.id === id)
   )
 
-  const [title, setTitle] = useState(post?.title)
-  const [content, setContent] = useState(post?.content)
+  const [title, setTitle] = useState((post as PostType).title)
+  const [content, setContent] = useState((post as PostType).content)
   const [modalVisible, setModalVisible] = useState(false)
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
   }
 
-  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
   }
 
+  const isDisabled = content.trim() === '' || title.trim() === ''
+
   const goBack = () => {
-    navigate(-1)
+    navigate('/posts')
   }
 
   const onSave = () => {
@@ -45,21 +50,48 @@ const Post: FC = () => {
     setModalVisible(true)
   }
 
+  if (!posts.find((el) => el.id === id)) {
+    return <NotFoundPage />
+  }
+
   return (
     <>
-      <section>
-        <button onClick={goBack}>Назад</button>
-        <h3>{`Запись "${post?.title}"`}</h3>
-        <form>
-          <label htmlFor="">
-            <input type="text" value={title} onChange={onChangeTitle} />
+      <section className={styles.postContainer}>
+        <button className={styles.backButton} onClick={goBack}>
+          Назад
+        </button>
+        <h3 className={styles.postTitle}>{`Запись "${post?.title}"`}</h3>
+        <form className={styles.formPost}>
+          <label className={styles.titleLabel}>
+            Title:
+            <input
+              className={styles.titleInput}
+              type="text"
+              value={title}
+              onChange={onChangeTitle}
+            />
           </label>
-          <label htmlFor="">
-            <input type="text" value={content} onChange={onChangeContent} />
+          <label className={styles.contentLabel}>
+            Content:
+            <textarea
+              className={styles.contentInput}
+              value={content}
+              onChange={onChangeContent}
+            />
           </label>
         </form>
-        <button onClick={onDelete}>Удалить</button>
-        <button onClick={onSave}>Сохранить</button>
+        <div className={styles.buttonContainer}>
+          <button className={styles.deleteButton} onClick={onDelete}>
+            Удалить
+          </button>
+          <button
+            className={styles.saveButton}
+            onClick={onSave}
+            disabled={isDisabled}
+          >
+            Сохранить
+          </button>
+        </div>
       </section>
       <ModalDelete
         id={id as string}

@@ -2,7 +2,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import React, { FC, ReactHTMLElement, useState } from 'react'
 import { useAppDispatch } from '../../hooks/hook'
 import { setPosts } from '../../store/slices/postsSlice'
-import styles from './ModalForm.module.scss'
+import styles from './ModalCreate.module.scss'
 
 type ModalTypeProps = {
   visible: boolean
@@ -19,19 +19,21 @@ const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
+  const isDisabled = content.trim() === '' || title.trim() === ''
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
   }
 
-  const onChangeContent = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value)
   }
 
   const onSave = () => {
     const post = {
       id: nanoid(),
-      title,
-      content,
+      title: title.trim(),
+      content: content.trim(),
     }
     dispatch(setPosts(post))
     setTitle('')
@@ -45,21 +47,22 @@ const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
 
   return (
     <section style={style} className={styles.modalContainer}>
-      <div className={styles.modalForm}>
-        <form action="">
-          <label>
+      <div className={styles.modalFormContainer}>
+        <form className={styles.modalForm} action="">
+          <label className={styles.titleLabel}>
             Title:
             <input
+              className={styles.titleInput}
               type="text"
               onChange={(e) => onChangeTitle(e)}
               value={title}
               autoComplete="off"
             />
           </label>
-          <label>
+          <label className={styles.contentLabel}>
             Content:
-            <input
-              type="text"
+            <textarea
+              className={styles.contentInput}
               onChange={(e) => onChangeContent(e)}
               value={content}
               autoComplete="off"
@@ -70,7 +73,11 @@ const Modal: FC<ModalTypeProps> = ({ visible, setVisible }) => {
           <button className={styles.modalButton} onClick={onCancel}>
             Отменить
           </button>
-          <button className={styles.modalButton} onClick={onSave}>
+          <button
+            className={styles.modalButton}
+            onClick={onSave}
+            disabled={isDisabled}
+          >
             Сохранить
           </button>
         </div>

@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/hook'
 import { deletePost } from '../../store/slices/postsSlice'
+import styles from './ModalDelete.module.scss'
 
 type ModalDeleteTypeProps = {
   id: string
@@ -19,7 +20,7 @@ const ModalDelete: FC<ModalDeleteTypeProps> = ({
 
   const onDelete = () => {
     dispatch(deletePost(id))
-    navigate(-1)
+    navigate('/posts')
   }
 
   const hideModal = () => {
@@ -31,12 +32,19 @@ const ModalDelete: FC<ModalDeleteTypeProps> = ({
   }
 
   return (
-    <section style={style}>
-      <div>
-        <p> Вы действительно хотите удалить событие?</p>
-        <div>
-          <button onClick={onDelete}>Удалить</button>
-          <button onClick={hideModal}>Отмненить</button>
+    <section style={style} className={styles.modalContainer}>
+      <div className={styles.modalFormContainer}>
+        <p className={styles.modalMessage}>
+          {' '}
+          Вы действительно хотите удалить событие?
+        </p>
+        <div className={styles.buttonContainer}>
+          <button className={styles.deleteButton} onClick={onDelete}>
+            Удалить
+          </button>
+          <button className={styles.cancelButton} onClick={hideModal}>
+            Отмненить
+          </button>
         </div>
       </div>
     </section>

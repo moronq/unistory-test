@@ -1,0 +1,77 @@
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.postTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.backButton {
+  background-color: #dbe9f8;
+  padding: 10px 50px;
+  border: 1px solid #868ea1;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #f4f9ff;
+  }
+}
+
+.formPost {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+.titleInput,
+.contentInput {
+  border: 1px solid #676767;
+  height: 30px;
+  font-size: 16px;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.titleLabel,
+.contentLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.contentInput {
+  height: 400px;
+  resize: none;
+}
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.deleteButton,
+.saveButton {
+  background-color: #dbe9f8;
+  padding: 10px 20px;
+  border: 1px solid #868ea1;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background-color: #f4f9ff;
+  }
+  &:disabled {
+    background-color: #bec2cc;
+  }
+}
+.deleteButton {
+  background-color: #f1cfcd;
+  border: 1px solid #916663;
+  &:active {
+    background-color: #c89c99;
+  }
+}

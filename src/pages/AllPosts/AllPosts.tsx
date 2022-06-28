@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import Modal from '../../components/ModalForm/ModalForm'
+import Modal from '../../components/ModalCreate/ModalCreate'
 import PostItem from '../../components/PostItem/PostItem'
 import { useAppSelector } from '../../hooks/hook'
 import styles from './AllPost.module.scss'
