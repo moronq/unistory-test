@@ -12,7 +12,7 @@ type PostItemTypeProps = {
 const PostItem: FC<PostItemTypeProps> = ({ title, content, id }) => {
   return (
     <li className={styles.postContainer}>
-      <h3 className={styles.postTitle}>{trimText(title, 25)}</h3>
+      <h3 className={styles.postTitle}>{trimText(title, 15)}</h3>
       <article className={styles.postContent}>
         <p className={styles.postText}>{content}</p>
       </article>
