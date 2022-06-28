@@ -1,9 +1,9 @@
 import { nanoid } from '@reduxjs/toolkit'
-import React, { FC, ReactHTMLElement, useState } from 'react'
+import React, { FC, useState } from 'react'
+import Modal from '../../hoc/Modal'
 import { useAppDispatch } from '../../hooks/hook'
 import { setPosts } from '../../store/slices/postsSlice'
 import styles from './ModalCreate.module.scss'
-import Modal from '../../hoc/Modal'
 
 type ModalTypeProps = {
   visible: boolean
@@ -51,6 +51,7 @@ const ModalCreate: FC<ModalTypeProps> = ({ visible, setVisible }) => {
             <input
               className={styles.titleInput}
               type="text"
+              name="title"
               onChange={(e) => onChangeTitle(e)}
               value={title}
               autoComplete="off"

@@ -32,7 +32,6 @@ const ModalDelete: FC<ModalDeleteTypeProps> = ({
     <Modal visible={visible}>
       <div className={styles.modalFormContainer}>
         <p className={styles.modalMessage}>
-          {' '}
           Вы действительно хотите удалить событие?
         </p>
         <div className={styles.buttonContainer}>

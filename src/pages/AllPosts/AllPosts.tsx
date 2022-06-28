@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import Modal from '../../components/ModalCreate/ModalCreate'
 import PostItem from '../../components/PostItem/PostItem'
 import { useAppSelector } from '../../hooks/hook'
@@ -15,6 +15,7 @@ const AllPosts: FC = () => {
     <section className={styles.postsPageContainer}>
       <h2 className={styles.pageTitle}>Блог</h2>
       <div className={styles.postListContainer}>
+        {!posts.length && <p>Пока нет ни одного события =(</p>}
         <ul className={styles.postList}>
           {posts.map((el) => {
             return (

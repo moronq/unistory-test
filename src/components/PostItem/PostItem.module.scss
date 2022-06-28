@@ -25,6 +25,8 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-all;
+  text-align: center;
 }
 
 .postButton {

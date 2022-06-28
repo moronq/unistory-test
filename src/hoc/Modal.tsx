@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './Modal.module.scss'
 
 type ModalTypeProps = {
@@ -7,6 +7,14 @@ type ModalTypeProps = {
 }
 
 const Modal: FC<ModalTypeProps> = ({ children, visible }) => {
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflowY = 'hidden'
+    } else {
+      document.body.style.overflowY = 'scroll'
+    }
+  }, [visible])
+
   const style = {
     display: visible ? 'block' : 'none',
   }

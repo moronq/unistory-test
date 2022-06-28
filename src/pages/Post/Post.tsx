@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ModalDelete from '../../components/ModalDelete/ModalDelete'
 import NotFoundPage from '../../components/NotFoundPage'
 import { useAppDispatch, useAppSelector } from '../../hooks/hook'
-import { changePost, deletePost } from '../../store/slices/postsSlice'
+import { changePost } from '../../store/slices/postsSlice'
 import { PostType } from '../../types/postType'
 import styles from './Post.module.scss'
 
@@ -18,8 +18,8 @@ const Post: FC = () => {
     state.posts.posts.find((el) => el.id === id)
   )
 
-  const [title, setTitle] = useState((post as PostType).title)
-  const [content, setContent] = useState((post as PostType).content)
+  const [title, setTitle] = useState((post as PostType)?.title || '')
+  const [content, setContent] = useState((post as PostType)?.content || '')
   const [modalVisible, setModalVisible] = useState(false)
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +67,7 @@ const Post: FC = () => {
             <input
               className={styles.titleInput}
               type="text"
+              name="title"
               value={title}
               onChange={onChangeTitle}
             />

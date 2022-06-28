@@ -6,12 +6,7 @@ type initialStateType = {
 }
 
 const initialState: initialStateType = {
-  posts: [
-    { id: '1', title: 'dfsd', content: 'dsfd' },
-    { id: '2', title: 'dfsd', content: 'dsfd' },
-    { id: '3', title: 'dfsd', content: 'dsfd' },
-    { id: '4', title: 'dfsd', content: 'dsfd' },
-  ] as Array<PostType>,
+  posts: [] as Array<PostType>,
 }
 
 export const postsSlice = createSlice({
